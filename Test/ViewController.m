@@ -15,6 +15,7 @@
     NSString *lat;
     NSString *lng;
     Boolean *hasInitLocation;
+    GMSCoordinateBounds *bounds;
 }
 
 - (void)viewDidLoad {
@@ -31,12 +32,12 @@
 
 -(void) initMapView{
     camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                              longitude:151.20
-                                                   zoom:15];
-
+                                         longitude:151.20
+                                              zoom:15];
+    
     self.viewSS.camera = camera;
     [self.viewSS setDelegate:self];
-
+    
     self.viewSS.myLocationEnabled = YES;
     UIEdgeInsets mapInsets = UIEdgeInsetsMake(100.0, 0.0, 0.0, 300.0);
     self.viewSS.padding = mapInsets;
@@ -49,11 +50,11 @@
     marker.snippet = @"Australia";
     marker.map = self.viewSS;
     [self.viewSS setNeedsDisplay];
-
-  
     
-   
-   [self initLocationManager];
+    
+    
+    
+    [self initLocationManager];
     
 }
 -(IBAction) hasClicked:(id)sender{
@@ -93,11 +94,12 @@
     CLLocation *currentLocation = newLocation;
     
     if (currentLocation != nil) {
-        GMSCoordinateBounds *coords;
-        [coords initWithCoordinate:currentLocation.coordinate coordinate:currentLocation.coordinate];
-        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:coords
-                                                 withPadding:50.0f];
-        [self.viewSS moveCamera:update];
+        if(bounds==nil){
+            bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:currentLocation.coordinate coordinate:currentLocation.coordinate];
+            GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds
+                                                     withPadding:50.0f];
+            [self.viewSS animateWithCameraUpdate:update];
+        }
         lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
         lng = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
         NSLog(@"Lat %@ Long %@ ",lat,lng );
