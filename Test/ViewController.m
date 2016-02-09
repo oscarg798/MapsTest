@@ -13,8 +13,9 @@
 @implementation ViewController{
     GMSCameraPosition *camera;
     NSString *lat;
+    GMSMarker *marker;
     NSString *lng;
-    Boolean *hasInitLocation;
+    BOOL *hasInitLocation;
     GMSCoordinateBounds *bounds;
 }
 
@@ -38,13 +39,13 @@
     self.viewSS.camera = camera;
     [self.viewSS setDelegate:self];
     
-    self.viewSS.myLocationEnabled = YES;
+    //self.viewSS.myLocationEnabled = YES;
     UIEdgeInsets mapInsets = UIEdgeInsetsMake(100.0, 0.0, 0.0, 300.0);
     self.viewSS.padding = mapInsets;
     
     
     
-    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
     marker.title = @"Sydney";
     marker.snippet = @"Australia";
@@ -59,6 +60,8 @@
 }
 -(IBAction) hasClicked:(id)sender{
     NSLog(@"Click");
+    bounds=nil;
+    [self.locationManager startUpdatingLocation];
     
     
 }
@@ -68,14 +71,19 @@
 }
 
 -(void) initLocationManager{
-    if(!hasInitLocation){
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
-        [ self.locationManager startUpdatingLocation];
-        hasInitLocation=true;
-    }
+    
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager requestAlwaysAuthorization];
+    // Enable automatic pausing
+    self.locationManager.pausesLocationUpdatesAutomatically = YES;
+    
+    // Enable background location updates
+    self.locationManager.allowsBackgroundLocationUpdates = YES;
+    [ self.locationManager startUpdatingLocation];
+   
+    
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -91,17 +99,26 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
-    CLLocation *currentLocation = newLocation;
-    
-    if (currentLocation != nil) {
+
+    if (newLocation != nil) {
+        
+        
         if(bounds==nil){
-            bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:currentLocation.coordinate coordinate:currentLocation.coordinate];
+            bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:newLocation.coordinate coordinate:newLocation.coordinate];
             GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds
-                                                     withPadding:50.0f];
+                                                     withPadding:100.0f];
+            marker.position = CLLocationCoordinate2DMake(newLocation.coordinate.latitude,
+                                                         newLocation.coordinate.longitude);
+            marker.title = @"Sydney";
+            marker.snippet = @"Australia";
+            UIImage * someImage = [UIImage imageNamed: @"pin"];
+            [marker setIcon:someImage];
+            marker.map = self.viewSS;
+            [self.locationManager stopUpdatingLocation];
             [self.viewSS animateWithCameraUpdate:update];
         }
-        lat = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.longitude];
-        lng = [NSString stringWithFormat:@"%.8f", currentLocation.coordinate.latitude];
+        lat = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.longitude];
+        lng = [NSString stringWithFormat:@"%.8f", newLocation.coordinate.latitude];
         NSLog(@"Lat %@ Long %@ ",lat,lng );
     }
 }
