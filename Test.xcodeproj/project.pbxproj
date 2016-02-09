@@ -17,6 +17,7 @@
 		FF8FC0001C66BDF700B1295C /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8FBFFF1C66BDF700B1295C /* TestTests.m */; };
 		FF8FC00B1C66BDF700B1295C /* TestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8FC00A1C66BDF700B1295C /* TestUITests.m */; };
 		FF8FC0191C66C58200B1295C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8FC0181C66C58200B1295C /* CoreLocation.framework */; };
+		FF8FC0221C69970800B1295C /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8FC0211C69970800B1295C /* pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		FF8FC00A1C66BDF700B1295C /* TestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUITests.m; sourceTree = "<group>"; };
 		FF8FC00C1C66BDF700B1295C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF8FC0181C66C58200B1295C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FF8FC0211C69970800B1295C /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = ../../../../Desktop/pin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		FF8FBFD91C66BDF700B1295C = {
 			isa = PBXGroup;
 			children = (
+				FF8FC01C1C69932E00B1295C /* Resources */,
 				FF8FC0181C66C58200B1295C /* CoreLocation.framework */,
 				FF8FBFE41C66BDF700B1295C /* Test */,
 				FF8FBFFE1C66BDF700B1295C /* TestTests */,
@@ -166,6 +169,14 @@
 				FF8FC00C1C66BDF700B1295C /* Info.plist */,
 			);
 			path = TestUITests;
+			sourceTree = "<group>";
+		};
+		FF8FC01C1C69932E00B1295C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FF8FC0211C69970800B1295C /* pin.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +249,11 @@
 				TargetAttributes = {
 					FF8FBFE11C66BDF700B1295C = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					FF8FBFFA1C66BDF700B1295C = {
 						CreatedOnToolsVersion = 7.2;
@@ -275,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8FBFF51C66BDF700B1295C /* LaunchScreen.storyboard in Resources */,
+				FF8FC0221C69970800B1295C /* pin.png in Resources */,
 				FF8FBFF21C66BDF700B1295C /* Assets.xcassets in Resources */,
 				FF8FBFF01C66BDF700B1295C /* Main.storyboard in Resources */,
 			);
