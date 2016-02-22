@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 @import GoogleMaps;
+#define openScheduleText @"Abierto"
+#define closeScheduleText @"Cerrado"
+
+
 
 
 @implementation ViewController{
@@ -15,7 +19,11 @@
     NSString *lat;
     GMSMarker *marker;
     NSString *lng;
+ 
     BOOL *hasInitLocation;
+    
+    //UIImage * someImage = [UIImage imageNamed: @"image_type_icon"];
+    
     GMSCoordinateBounds *bounds;
 }
 
@@ -23,41 +31,152 @@
     [super viewDidLoad];
     hasInitLocation= false;
     self.locationManager = [[CLLocationManager alloc] init];
+    
     [self.button setTitle:@"Hola" forState:UIControlStateNormal];
+    
+    self.nequiPointsArray = [[NSMutableArray alloc] initWithCapacity:2];
+    
+    [self.nequiPointsArray addObject:[[NequiPoint alloc] initWithName:@"Botega" type:@"Punto de recarga" address:@"Cll 27 # 24" schedule:closeScheduleText latitude:6.229694 longitude:-75.575182]];
+    
+    [self.nequiPointsArray addObject:[[NequiPoint alloc] initWithName:@"Bacuba" type:@"Punto de pago" address:@"Cll 27 # 24" schedule:openScheduleText latitude:6.229075 longitude:-75.575064]];
+    
+    [self initializeInformationCard];
+    
     [self initMapView];
+    
+    
+    
     
     
     // Do any additional setup after loading the view, typically from a nib.
     
 }
 
+-(void) initializeInformationCard{
+    
+    [self.pointImage setImage:[UIImage imageNamed:@"image_type_icon"]];
+    
+    [self.closeButton setImage:[UIImage imageNamed:@"close_icon"]];
+    
+    self.closeButton.userInteractionEnabled =TRUE;
+    
+    
+
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetected:)];
+    
+    
+    [self.closeButton addGestureRecognizer:singleTap];
+    
+    
+
+    
+    
+    
+    [self.pointName setTextColor:[self colorFromRGBWithColor:0.2 andWithColor:0.15 andWithColor:0.52]];
+    
+    [self.pointName setFont:[UIFont fontWithName:@"AvenirNext-Medium" size:16]];
+    
+    [self.pointAddress setTextColor:[self colorFromRGBWithColor:0.63 andWithColor:0.69 andWithColor:0.71]];
+    
+    [self.pointAddress setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+    
+    [self.pointScheduleText setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+    
+    [self.pointScheduleText setTextColor:[self colorFromRGBWithColor:1 andWithColor:1 andWithColor:1]];
+    
+    [self.pointScheduleText setBackgroundColor:[self colorFromRGBWithColor:0.02 andWithColor:1 andWithColor:0.54]];
+    
+    [self.pointScheduleText setTextAlignment:NSTextAlignmentCenter];
+    
+    [self.pointType setTextColor:[self colorFromRGBWithColor:0.63 andWithColor:0.69 andWithColor:0.71]];
+    
+    [self.pointType setFont:[UIFont fontWithName:@"AvenirNext-Regular" size:14]];
+    
+    [self.pointInformationCardView setBackgroundColor: [self colorFromRGBWithColor:1 andWithColor:1 andWithColor:1]];
+    
+    self.pointInformationCardView.hidden=YES;
+    
+}
 -(void) initMapView{
-    camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                         longitude:151.20
+    camera = [GMSCameraPosition cameraWithLatitude:6.229971
+                                         longitude:-75.575686
                                               zoom:15];
     
     self.viewSS.camera = camera;
     [self.viewSS setDelegate:self];
     
-    //self.viewSS.myLocationEnabled = YES;
     UIEdgeInsets mapInsets = UIEdgeInsetsMake(100.0, 0.0, 0.0, 300.0);
+    
     self.viewSS.padding = mapInsets;
     
     
     
     marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
+    marker.position = CLLocationCoordinate2DMake(6.229971, -75.575686);
     marker.map = self.viewSS;
-    [self.viewSS setNeedsDisplay];
+    
+    
+    for(int i = 0; i< 2;i++){
+        
+        marker = [[GMSMarker alloc] init];
+        
+        marker.position= CLLocationCoordinate2DMake(        [(NequiPoint*) [self.nequiPointsArray objectAtIndex:i]pointLatitude] ,[(NequiPoint*) [self.nequiPointsArray objectAtIndex:i]pointLongitude]);
+        
+        marker.title =  [(NequiPoint*) [self.nequiPointsArray objectAtIndex:i]pointName];
+        
+        marker.map = self.viewSS;
+    }
     
     
     
+    [self.viewSS addSubview: self.pointInformationCardView];
     
-    [self initLocationManager];
+    
+    
+    //[self initLocationManager];
+    
     
 }
+
+- (BOOL) mapView:		(GMSMapView *) 	mapView
+    didTapMarker:		(GMSMarker *) 	marker{
+    
+    [self getNequiPointFromMarkerClickWithMarker:marker];
+    
+    NSLog(@"tap tap tap");
+    return true;
+}
+
+-(void) getNequiPointFromMarkerClickWithMarker:(GMSMarker*) marker{
+    for(NequiPoint* point in self.nequiPointsArray){
+        if([point pointName] == [marker title]){
+            [self setValuestoInformationCardWithNeQuiPoint:point];
+            break;
+        }
+    }
+}
+
+-(void) setValuestoInformationCardWithNeQuiPoint:(NequiPoint*) nequiPoint{
+    [self.pointName setText:[nequiPoint pointName]];
+    
+    [self.pointAddress setText:[nequiPoint pointAddress]];
+    [self.pointType setText:[nequiPoint pointType]];
+    
+    
+    
+    [self.pointScheduleText setText:[NSString stringWithFormat:@"  %@  ",[nequiPoint pointSchedule]]];
+    
+    if([[nequiPoint pointSchedule] isEqualToString:closeScheduleText]){
+        [self.pointScheduleText setBackgroundColor:[self colorFromRGBWithColor:0.96 andWithColor:0 andWithColor:0.34]];
+    }else{
+         [self.pointScheduleText setBackgroundColor:[self colorFromRGBWithColor:0.02 andWithColor:1 andWithColor:0.54]];
+    }
+    
+    self.pointInformationCardView.hidden= NO;
+}
+
+
 -(IBAction) hasClicked:(id)sender{
     NSLog(@"Click");
     bounds=nil;
@@ -81,8 +200,8 @@
     
     // Enable background location updates
     self.locationManager.allowsBackgroundLocationUpdates = YES;
-    [ self.locationManager startUpdatingLocation];
-   
+    [self.locationManager startUpdatingLocation];
+    
     
 }
 
@@ -99,7 +218,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation: %@", newLocation);
-
+    
     if (newLocation != nil) {
         
         
@@ -122,5 +241,17 @@
         NSLog(@"Lat %@ Long %@ ",lat,lng );
     }
 }
+-(UIColor *) colorFromRGBWithColor: (float)red andWithColor:(float)green andWithColor:(float)blue{
+    return [UIColor colorWithRed:red green:green blue:blue alpha:1];
+}
+
+-(void) closeButtonClick{
+    self.pointInformationCardView.hidden=YES;
+}
+-(void)tapDetected:(UITapGestureRecognizer *)sender{
+    NSLog(@"single Tap on imageview");
+    self.pointInformationCardView.hidden=YES;
+}
+
 
 @end

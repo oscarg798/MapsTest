@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D13b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E33e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,10 +19,76 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clearsContextBeforeDrawing="NO" contentMode="redraw" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gTW-35-xUm" customClass="GMSMapView">
-                                <rect key="frame" x="36" y="50" width="248" height="243"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ps4-IH-LVB">
+                                        <rect key="frame" x="8" y="292" width="304" height="127"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Point name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJX-KV-MAg">
+                                                <rect key="frame" x="99" y="8" width="86" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Point Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SCY-o9-tEp">
+                                                <rect key="frame" x="99" y="32" width="107" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Point Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yue-fb-t4j">
+                                                <rect key="frame" x="99" y="98" width="81" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wWy-Bu-W1w">
+                                                <rect key="frame" x="0.0" y="0.0" width="78" height="127"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIo-RM-YXJ">
+                                                <rect key="frame" x="254" y="98" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cgd-dp-FyM">
+                                                <rect key="frame" x="264" y="8" width="32" height="38"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="Bae-gw-X3f"/>
+                                                    <constraint firstAttribute="width" constant="32" id="qA5-nh-4kY"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstItem="BJX-KV-MAg" firstAttribute="top" secondItem="ps4-IH-LVB" secondAttribute="top" constant="8" id="11u-D4-v4A"/>
+                                            <constraint firstAttribute="trailing" secondItem="Cgd-dp-FyM" secondAttribute="trailing" constant="22" id="7pM-Lk-ryK"/>
+                                            <constraint firstItem="wWy-Bu-W1w" firstAttribute="leading" secondItem="ps4-IH-LVB" secondAttribute="leading" id="DCI-al-Fhv"/>
+                                            <constraint firstItem="Cgd-dp-FyM" firstAttribute="top" secondItem="ps4-IH-LVB" secondAttribute="top" constant="6" id="PY8-Vu-qdx"/>
+                                            <constraint firstItem="SCY-o9-tEp" firstAttribute="top" secondItem="BJX-KV-MAg" secondAttribute="bottom" constant="3" id="U1Z-OO-5XC"/>
+                                            <constraint firstAttribute="trailing" secondItem="rIo-RM-YXJ" secondAttribute="trailing" constant="20" id="buR-5Z-Cz1"/>
+                                            <constraint firstItem="Yue-fb-t4j" firstAttribute="top" secondItem="SCY-o9-tEp" secondAttribute="bottom" constant="54" id="ekE-ic-FaI"/>
+                                            <constraint firstAttribute="bottom" secondItem="wWy-Bu-W1w" secondAttribute="bottom" id="h2A-MP-Bk2"/>
+                                            <constraint firstAttribute="bottom" secondItem="Yue-fb-t4j" secondAttribute="bottom" constant="8" id="pip-Xn-R4w"/>
+                                            <constraint firstItem="wWy-Bu-W1w" firstAttribute="top" secondItem="ps4-IH-LVB" secondAttribute="top" id="y5y-e1-38n"/>
+                                            <constraint firstAttribute="bottom" secondItem="rIo-RM-YXJ" secondAttribute="bottom" constant="8" id="ydm-ae-UfQ"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ps4-IH-LVB" firstAttribute="leading" secondItem="gTW-35-xUm" secondAttribute="leading" constant="8" id="5Et-BN-xHW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ps4-IH-LVB" secondAttribute="trailing" constant="8" id="OK2-Is-ZS6"/>
+                                    <constraint firstAttribute="bottom" secondItem="ps4-IH-LVB" secondAttribute="bottom" constant="60" id="YEd-ID-xan"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkg-87-w3f">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkg-87-w3f">
                                 <rect key="frame" x="146" y="12" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -32,16 +98,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="gTW-35-xUm" secondAttribute="trailing" id="6e0-sa-mqR"/>
-                            <constraint firstItem="gTW-35-xUm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Rnd-Zf-GyE"/>
-                            <constraint firstItem="gTW-35-xUm" firstAttribute="top" secondItem="Vkg-87-w3f" secondAttribute="bottom" id="TCF-TP-WEd"/>
-                            <constraint firstItem="aFM-e9-ABt" firstAttribute="top" secondItem="gTW-35-xUm" secondAttribute="bottom" id="yCB-In-kNR"/>
+                            <constraint firstItem="aFM-e9-ABt" firstAttribute="top" secondItem="gTW-35-xUm" secondAttribute="bottom" id="ZOx-2X-VrR"/>
+                            <constraint firstItem="gTW-35-xUm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="cJR-0e-Cue"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="PrincipalView" destination="8bC-Xf-vdC" id="lBo-cO-LJL"/>
+                        <outlet property="PrincipalView" destination="8bC-Xf-vdC" id="xcX-zU-hs2"/>
                         <outlet property="button" destination="Vkg-87-w3f" id="4tA-FK-nqx"/>
+                        <outlet property="closeButton" destination="Cgd-dp-FyM" id="sCt-9Q-WLQ"/>
+                        <outlet property="pointAddress" destination="SCY-o9-tEp" id="m8G-cL-Uiz"/>
+                        <outlet property="pointImage" destination="wWy-Bu-W1w" id="am3-PS-I8T"/>
+                        <outlet property="pointInformationCardView" destination="ps4-IH-LVB" id="j7L-cs-QaL"/>
+                        <outlet property="pointName" destination="BJX-KV-MAg" id="BTL-4s-6sg"/>
+                        <outlet property="pointScheduleText" destination="rIo-RM-YXJ" id="Irn-L5-yTE"/>
+                        <outlet property="pointType" destination="Yue-fb-t4j" id="BVw-Wg-X7m"/>
                         <outlet property="viewSS" destination="gTW-35-xUm" id="PYA-kS-jsV"/>
                     </connections>
                 </viewController>

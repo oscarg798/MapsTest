@@ -18,6 +18,10 @@
 		FF8FC00B1C66BDF700B1295C /* TestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF8FC00A1C66BDF700B1295C /* TestUITests.m */; };
 		FF8FC0191C66C58200B1295C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF8FC0181C66C58200B1295C /* CoreLocation.framework */; };
 		FF8FC0221C69970800B1295C /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = FF8FC0211C69970800B1295C /* pin.png */; };
+		FFD322771C7A81560000486E /* image_type_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD322761C7A81560000486E /* image_type_icon.png */; };
+		FFD322821C7A8E3F0000486E /* NequiPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD322811C7A8E3F0000486E /* NequiPoint.m */; };
+		FFD322841C7A971E0000486E /* AvenirNextLTPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FFD322831C7A971E0000486E /* AvenirNextLTPro-Regular.otf */; };
+		FFD322861C7AB31C0000486E /* close_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFD322851C7AB31C0000486E /* close_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,11 @@
 		FF8FC00C1C66BDF700B1295C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF8FC0181C66C58200B1295C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FF8FC0211C69970800B1295C /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pin.png; path = ../../../../Desktop/pin.png; sourceTree = "<group>"; };
+		FFD322761C7A81560000486E /* image_type_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image_type_icon.png; path = "../../../../Desktop/rectangle_1_copy_rectangle_1_copy_rectangle_1_mask_path_copy_3_path_copy_path_copy_2_copy_copy_copy_copy_copy_copy_2016-02-21/drawable-mdpi/image_type_icon.png"; sourceTree = "<group>"; };
+		FFD322801C7A8E3F0000486E /* NequiPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NequiPoint.h; sourceTree = "<group>"; };
+		FFD322811C7A8E3F0000486E /* NequiPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NequiPoint.m; sourceTree = "<group>"; };
+		FFD322831C7A971E0000486E /* AvenirNextLTPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AvenirNextLTPro-Regular.otf"; path = "../../../../Desktop/avenir-next-lt-pro/AvenirNextLTPro-Regular.otf"; sourceTree = "<group>"; };
+		FFD322851C7AB31C0000486E /* close_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close_icon.png; path = "../../../../Desktop/bounds_stroke_12_rectangle_97_line_line_copy_2_2016-02-22/drawable-mdpi/close_icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +150,8 @@
 				FF8FBFF31C66BDF700B1295C /* LaunchScreen.storyboard */,
 				FF8FBFF61C66BDF700B1295C /* Info.plist */,
 				FF8FBFE51C66BDF700B1295C /* Supporting Files */,
+				FFD322801C7A8E3F0000486E /* NequiPoint.h */,
+				FFD322811C7A8E3F0000486E /* NequiPoint.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -174,6 +185,9 @@
 		FF8FC01C1C69932E00B1295C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FFD322851C7AB31C0000486E /* close_icon.png */,
+				FFD322831C7A971E0000486E /* AvenirNextLTPro-Regular.otf */,
+				FFD322761C7A81560000486E /* image_type_icon.png */,
 				FF8FC0211C69970800B1295C /* pin.png */,
 			);
 			name = Resources;
@@ -290,9 +304,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFD322771C7A81560000486E /* image_type_icon.png in Resources */,
 				FF8FBFF51C66BDF700B1295C /* LaunchScreen.storyboard in Resources */,
 				FF8FC0221C69970800B1295C /* pin.png in Resources */,
+				FFD322861C7AB31C0000486E /* close_icon.png in Resources */,
 				FF8FBFF21C66BDF700B1295C /* Assets.xcassets in Resources */,
+				FFD322841C7A971E0000486E /* AvenirNextLTPro-Regular.otf in Resources */,
 				FF8FBFF01C66BDF700B1295C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +386,7 @@
 				FF8FBFED1C66BDF700B1295C /* ViewController.m in Sources */,
 				FF8FBFEA1C66BDF700B1295C /* AppDelegate.m in Sources */,
 				FF8FBFE71C66BDF700B1295C /* main.m in Sources */,
+				FFD322821C7A8E3F0000486E /* NequiPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
